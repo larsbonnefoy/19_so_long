@@ -67,5 +67,6 @@ int		move_up(t_map *map, int pfd);
 int		move_down(t_map *map, int pfd);
 int		move_left(t_map *map, int pfd);
 int		move_right(t_map *map, int pfd);
+int		check_done(t_map *map);
 int		pathfinding(t_map *map, int prev_pos_x, int prev_pos_y);
 #endif

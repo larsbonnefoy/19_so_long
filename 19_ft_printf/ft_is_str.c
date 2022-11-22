@@ -6,7 +6,7 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 10:49:39 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/10/21 16:02:06 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/22 09:09:37 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_is_str(char *s, int fd, int *rtn)
 
 	if (s == NULL)
 		s = "(null)";
-	len = ft_strlen(s);
+	len = ft_strlen_printf(s);
 	*rtn += len;
 	write(fd, s, len);
 }

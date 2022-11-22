@@ -6,7 +6,7 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 14:31:15 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/10/21 16:07:03 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/22 09:37:50 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_is_ptr(void *ptr, int fd, int *rtn)
 static void	ft_is_hex_long(unsigned long unb, char *base, int fd, int *rtn)
 {
 	if (unb < 16)
-		ft_putchar_fd(base[unb], fd, rtn);
+		ft_putchar_fd_printf(base[unb], fd, rtn);
 	if (unb >= 16)
 	{
 		ft_is_hex_long(unb / 16, base, fd, rtn);

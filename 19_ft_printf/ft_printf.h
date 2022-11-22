@@ -1,5 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -17,8 +15,9 @@
 # include <stdlib.h>
 # include <stdarg.h>
 
-void	ft_putchar_fd(char c, int fd, int *rtn);
-size_t	ft_strlen(const char *s);
+int		ft_printf(const char *format, ...);
+void	ft_putchar_fd_printf(char c, int fd, int *rtn);
+size_t	ft_strlen_printf(const char *s);
 void	ft_is_hex(unsigned int nbr, char *base, int fd, int *rtn);
 void	ft_is_str(char *s, int fd, int *rtn);
 void	ft_is_unsigned(unsigned int unb, int fd, int *rtn);

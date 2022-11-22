@@ -6,7 +6,7 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:54:56 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/21 16:24:48 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:20:40 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_player *init_player()
 	player->y = 0;
 	player->status = 0;
 	player->amount = 0;
+	player->mvt= 0;
 	return (player);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:25:32 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/22 08:50:08 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/22 09:43:41 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void  move_player(t_map *map, size_t start, size_t end, int pfd)
 			set_char_map(&map->bitmap[start], &map->bitmap[end], 'E', 'P');
 		else
 			set_char_map(&map->bitmap[start], &map->bitmap[end], '0', 'P');
+		map->player->mvt += 1;
 	}
 	if (pfd == 1)
 		set_char_map(&map->bitmap[start], &map->bitmap[end], 'x', 'P');

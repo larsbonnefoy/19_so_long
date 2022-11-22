@@ -6,7 +6,7 @@
 #    By: lbonnefo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/04 13:54:46 by lbonnefo          #+#    #+#              #
-#    Updated: 2022/10/24 08:07:28 by lbonnefo         ###   ########.fr        #
+#    Updated: 2022/11/22 09:36:08 by lbonnefo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ SRCS =	ft_is_hex.c \
 		ft_is_str.c \
 		ft_is_unsigned.c \
 		ft_printf.c \
-		ft_putchar_fd.c \
-		ft_strlen.c \
+		ft_putchar_fd_printf.c \
+		ft_strlen_printf.c \
 
 OBJ = $(SRCS:.c=.o)
 

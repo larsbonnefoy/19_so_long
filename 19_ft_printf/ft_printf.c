@@ -6,7 +6,7 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 10:25:46 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/10/24 08:30:17 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/22 09:38:41 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_printf(const char *format, ...)
 			ft_conversion(a, ap, format, &rtn);
 		}
 		else
-			ft_putchar_fd(format[a], 1, &rtn);
+			ft_putchar_fd_printf(format[a], 1, &rtn);
 		a++;
 	}
 	va_end(ap);
@@ -43,7 +43,7 @@ int	ft_printf(const char *format, ...)
 static void	ft_conversion(int a, va_list ap, const char *format, int *rtn)
 {
 	if (format[a] == 'c')
-		ft_putchar_fd(va_arg(ap, int), 1, rtn);
+		ft_putchar_fd_printf(va_arg(ap, int), 1, rtn);
 	else if (format[a] == 's')
 		ft_is_str(va_arg(ap, char *), 1, rtn);
 	else if (format[a] == 'p')
@@ -57,5 +57,5 @@ static void	ft_conversion(int a, va_list ap, const char *format, int *rtn)
 	else if (format[a] == 'X')
 		ft_is_hex(va_arg(ap, unsigned int), "0123456789ABCDEF", 1, rtn);
 	else if (format[a] == '%')
-		ft_putchar_fd('%', 1, rtn);
+		ft_putchar_fd_printf('%', 1, rtn);
 }

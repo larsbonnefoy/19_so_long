@@ -6,13 +6,13 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:17:57 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/10/21 16:00:41 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/22 09:45:10 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen_printf(const char *s)
 {
 	size_t	a;
 

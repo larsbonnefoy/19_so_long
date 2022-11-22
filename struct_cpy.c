@@ -6,7 +6,7 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:14 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/21 16:38:26 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/22 09:20:27 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void struct_cpy(t_map *map_cpy, t_map *map)
 	map_cpy->player->y = map->player->y;
 	map_cpy->player->status = map->player->status;
 	map_cpy->player->amount = map->player->amount;
+	map_cpy->player->mvt= map->player->mvt;
 	map_cpy->exit->x = map->exit->x;
 	map_cpy->exit->y = map->exit->y;
 	map_cpy->exit->status = map->exit->status;

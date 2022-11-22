@@ -6,7 +6,7 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 10:54:17 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/10/21 15:59:25 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/22 09:40:20 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	ft_is_int(int nb, int fd, int *rtn)
 	unb = nb;
 	if (nb < 0)
 	{
-		ft_putchar_fd('-', fd, rtn);
+		ft_putchar_fd_printf('-', fd, rtn);
 		unb = -nb;
 	}
 	if (unb < 10)
 	{
 		unb += '0';
-		ft_putchar_fd(unb, 1, rtn);
+		ft_putchar_fd_printf(unb, 1, rtn);
 	}
 	else
 	{

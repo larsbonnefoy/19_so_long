@@ -6,7 +6,7 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:39:03 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/21 17:24:40 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/22 17:04:19 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,14 @@ void get_map(char *map_file, t_map *map)
 	fd = open(map_file, O_RDONLY);	
 	if (fd == -1)//erreur d'open
 		return ;
+	
 	while (1)
 	{
 		new_line= get_next_line(fd);
-		if (!new_line)
-			return ;	
-		if (ft_strlen(new_line) < 3)
-		{
-			printf("pas assez de lignes pour faire une carte");
-			free(new_line);
-			exit(1);
-		}
+		if (new_line == NULL)
+			return ;
+		if (ft_strlen(new_line) < 4)
+			line_error(map, new_line);
 		new_line = ft_strtrimf(new_line, "\n"); //free dans strtrim
 		if (!new_line)
 			return ;
@@ -46,8 +43,8 @@ void get_map(char *map_file, t_map *map)
 		}
 		else
 		{	
-			if ((int)ft_strlen(new_line) != map->x) //lq premiere ligne est quand meme stored => en cas d'erreur ici tout free;
-				return ;
+			if ((int)ft_strlen(new_line) != map->x)
+				line_error(map, new_line);	
 			map->bitmap = ft_strjoinf(map->bitmap, new_line); 
 			map->y += 1;
 			free(new_line);
@@ -67,10 +64,7 @@ void check_map(t_map *map)
 		pos++;		
 	}
 	if (map->coll->amount == 0 || map->player->amount != 1 || map->exit->amount != 1)
-	{
-		printf("EXIT Coll: %d player: %d exit: %d", map->coll->amount, map->player->amount, map->exit->amount);
-		exit (1);
-	}
+		token_error(map);
 }
 
 size_t  check_wall(t_map *map, size_t pos)
@@ -80,18 +74,12 @@ size_t  check_wall(t_map *map, size_t pos)
 		if(map->bitmap[pos] == '1')
 			pos++;
 		else
-		{
-			printf("1. Map not surounded by Walls");
-			exit (1);
-		}		
+			wall_error(map, get_col(map, pos), get_line(map, pos));
 	}
 	if((get_col(map, pos) == 0 || get_col(map, pos) == map->x-1))
 	{
 		if(map->bitmap[pos] != '1')
-		{	
-			printf("2. Map not surounded by Walls");
-			exit(1);
-		}
+			wall_error(map, get_col(map, pos), get_line(map, pos));
 	}
 	return (pos);
 }
@@ -111,16 +99,7 @@ void add_tokens(t_map *map, size_t pos)
 		map->exit->amount+=1;
 	}
 	if (ft_strchr("10PCE" , map->bitmap[pos]) == NULL)
-	{
-		printf("Not a valid char");
-		exit(1);		
-	}
+		wrong_char(map, get_col(map, pos), get_line(map, pos));
 	if (map->player->amount > 1 || map->exit->amount > 1)
-	{
-		printf("Trop de joueur ou de sorties\n");//faire un if par cas pour personnaliser les erreurs
-		exit(1);
-	}
+		token_error(map);
 }
-
-
-

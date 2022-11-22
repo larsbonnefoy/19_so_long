@@ -6,7 +6,7 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:54:56 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/17 14:29:34 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:24:48 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_exit *init_exit()
 {
 	t_exit *exit_map;
 	
-	exit_map = malloc(sizeof(t_player));
+	exit_map = malloc(sizeof(t_exit));
 	if (!exit_map)
 		exit(1);
 	exit_map->x = 0;

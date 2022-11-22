@@ -6,7 +6,7 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:22:12 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/18 13:32:06 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/22 08:10:59 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ int		move_up(t_map *map, int pfd);
 int		move_down(t_map *map, int pfd);
 int		move_left(t_map *map, int pfd);
 int		move_right(t_map *map, int pfd);
-int		check_done(t_map *map);
 int		pathfinding(t_map *map, int prev_pos_x, int prev_pos_y);
+int		check_done_pfd(t_map *map);
+void 	struct_cpy(t_map *map_cpy, t_map *map);
+void	free_map(t_map *map);
+int		key_hook(int keycode, t_map *map);
 #endif

@@ -6,7 +6,7 @@
 #    By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/11 13:10:56 by lbonnefo          #+#    #+#              #
-#    Updated: 2022/11/18 12:18:32 by lbonnefo         ###   ########.fr        #
+#    Updated: 2022/11/22 08:33:52 by lbonnefo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ SRCS =	main.c \
 		struct_init.c \
 		player_mvt.c \
 		pathfinding.c \
+		struct_cpy.c \
+		key_hook.c \
 
 OBJ = $(SRCS:.c=.o)
 
@@ -42,8 +44,8 @@ MLX = -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit $(MLX_PATH)
 $(NAME): $(OBJ)
 		@make -C $(LIBFT_DIR)
 		@make -C $(GNL_DIR)
-	#	@make -C $(MLX_DIR)
-		cc $(CFLAGS) -g $(OBJ) $(LIBFT) $(GNL) -o $(NAME)
+		@make -C $(MLX_DIR)
+		cc $(CFLAGS) -g $(OBJ) $(LIBFT) $(GNL) $(MLX) -o $(NAME)
 .c.o:
 		cc $(CFLAGS) -c $< -o $(<:.c=.o)
 

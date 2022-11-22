@@ -6,7 +6,7 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:39:03 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/17 10:24:13 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:24:40 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void get_map(char *map_file, t_map *map)
 				return ;
 			map->bitmap = ft_strjoinf(map->bitmap, new_line); 
 			map->y += 1;
+			free(new_line);
 		}
 	}
 }

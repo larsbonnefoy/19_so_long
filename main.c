@@ -6,7 +6,7 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:34:41 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/24 11:32:21 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/24 17:19:20 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,23 @@ int main(int argc, char **argv)
 {
 	t_map map;
 	t_map map_cpy;
+	t_data data;
+	t_data datacpy;
 
 	input_error(argc, argv);
 	init_map(&map);
+	data.map = &map;
 	init_map(&map_cpy);
 	get_map(argv[1], &map);
 	if (map.bitmap == NULL)
 		empty_doc(&map);
 	check_map(&map);	
 	struct_cpy(&map_cpy, &map);	
-	if (pathfinding(&map_cpy, map_cpy.player->x, map_cpy.player->y) == -1)
+	datacpy.map = &map_cpy;
+	if (pathfinding(&datacpy, map_cpy.player->x, map_cpy.player->y) == -1)
 		no_path_error(&map, &map_cpy);
 	free_map(&map_cpy);
+	
 	init_window(&map);	
 
 	free_map(&map);

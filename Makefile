@@ -6,7 +6,7 @@
 #    By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/11 13:10:56 by lbonnefo          #+#    #+#              #
-#    Updated: 2022/11/24 10:50:20 by lbonnefo         ###   ########.fr        #
+#    Updated: 2022/11/24 17:18:47 by lbonnefo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRCS =	main.c \
 
 OBJ = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -g
 
 ###LIB INCLUDES###
 

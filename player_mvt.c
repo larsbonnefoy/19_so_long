@@ -6,106 +6,129 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:25:32 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/22 09:43:41 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/24 17:01:48 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include "sprites.h"
 
-void move_player(t_map *map, size_t start, size_t end, int pfd);
+void move_player(t_data *data, size_t *pos, int pfd);
 void set_char_map(char *start_str, char *end_str, char start, char end);
 
-int	move_up(t_map *map, int pfd)
+int	move_up(t_data *data, int pfd)
 {
 	size_t pos_start;
 	size_t pos_end;
-	
-	pos_start = get_pos_str(map, map->player->x, map->player->y);
-	pos_end = pos_start - (size_t)(map->x);
-	if (map->bitmap[pos_end] == '1' || map->bitmap[pos_end] == 'x')
+	size_t pos[2];
+
+	pos_start = get_pos_str(data->map, data->map->player->x, data->map->player->y);
+	pos_end = pos_start - (size_t)(data->map->x);
+	pos[0] = pos_start; 
+	pos[1] = pos_end;
+	if (data->map->bitmap[pos_end] == '1' || data->map->bitmap[pos_end] == 'x')
 		return (0);
-	if (map->bitmap[pos_end] == 'E' || map->bitmap[pos_end] == '0')
-		move_player(map, pos_start, pos_end, pfd);
-	if (map->bitmap[pos_end] == 'C')
+	if (data->map->bitmap[pos_end] == 'E' || data->map->bitmap[pos_end] == '0')
+		move_player(data, pos, pfd);
+	if (data->map->bitmap[pos_end] == 'C')
 	{
-		map->coll->amount-=1;
-		move_player(map, pos_start, pos_end, pfd);
+		data->map->coll->amount-=1;
+		move_player(data, pos, pfd);
 	}
 	return (1);
 }
 
-int move_down(t_map *map, int pfd)
+int	move_down(t_data *data, int pfd)
 {
 	size_t pos_start;
 	size_t pos_end;
+	size_t pos[2];
 	
-	pos_start = get_pos_str(map, map->player->x, map->player->y);
-	pos_end = pos_start + (size_t)(map->x);
-	if (map->bitmap[pos_end] == '1' || map->bitmap[pos_end] == 'x')
+	pos_start = get_pos_str(data->map, data->map->player->x, data->map->player->y);
+	pos_end = pos_start + (size_t)(data->map->x);
+	pos[0] = pos_start; 
+	pos[1] = pos_end;
+	if (data->map->bitmap[pos_end] == '1' || data->map->bitmap[pos_end] == 'x')
 		return (0);
-	if (map->bitmap[pos_end] == 'E' || map->bitmap[pos_end] == '0')
-		move_player(map, pos_start, pos_end, pfd);
-	if (map->bitmap[pos_end] == 'C')
+	if (data->map->bitmap[pos_end] == 'E' || data->map->bitmap[pos_end] == '0')
+		move_player(data, pos, pfd);
+	if (data->map->bitmap[pos_end] == 'C')
 	{
-		map->coll->amount-=1;
-		move_player(map, pos_start, pos_end, pfd);
+		data->map->coll->amount-=1;
+		move_player(data, pos, pfd);
 	}
 	return (1);
 }
 
-int move_left(t_map *map, int pfd)
+int	move_left(t_data *data, int pfd)
 {
 	size_t pos_start;
 	size_t pos_end;
+	size_t pos[2];
 	
-	pos_start = get_pos_str(map, map->player->x, map->player->y);
-	pos_end = pos_start - 1;
-	if (map->bitmap[pos_end] == '1' || map->bitmap[pos_end] == 'x')
+	pos_start = get_pos_str(data->map, data->map->player->x, data->map->player->y);
+	pos_end = pos_start - 1; 
+	pos[0] = pos_start; 
+	pos[1] = pos_end;
+	if (data->map->bitmap[pos_end] == '1' || data->map->bitmap[pos_end] == 'x')
 		return (0);
-	if (map->bitmap[pos_end] == 'E' || map->bitmap[pos_end] == '0')
-		move_player(map, pos_start, pos_end, pfd);
-	if (map->bitmap[pos_end] == 'C')
+	if (data->map->bitmap[pos_end] == 'E' || data->map->bitmap[pos_end] == '0')
+		move_player(data, pos, pfd);
+	if (data->map->bitmap[pos_end] == 'C')
 	{
-		map->coll->amount-=1;
-		move_player(map, pos_start, pos_end, pfd);
+		data->map->coll->amount-=1;
+		move_player(data, pos, pfd);
 	}
 	return (1);
 }
 
-int	move_right(t_map *map, int pfd)
+int	move_right(t_data *data, int pfd)
 {
 	size_t pos_start;
 	size_t pos_end;
+	size_t pos[2];
 	
-	pos_start = get_pos_str(map, map->player->x, map->player->y);
-	pos_end = pos_start + 1;
-	if (map->bitmap[pos_end] == '1' || map->bitmap[pos_end] == 'x')
+	pos_start = get_pos_str(data->map, data->map->player->x, data->map->player->y);
+	pos_end = pos_start + 1; 
+	pos[0] = pos_start; 
+	pos[1] = pos_end;
+	if (data->map->bitmap[pos_end] == '1' || data->map->bitmap[pos_end] == 'x')
 		return (0);
-	if (map->bitmap[pos_end] == 'E' || map->bitmap[pos_end] == '0')
-		move_player(map, pos_start, pos_end, pfd);
-	if (map->bitmap[pos_end] == 'C')
+	if (data->map->bitmap[pos_end] == 'E' || data->map->bitmap[pos_end] == '0')
+		move_player(data, pos, pfd);
+	if (data->map->bitmap[pos_end] == 'C')
 	{
-		map->coll->amount-=1;
-		move_player(map, pos_start, pos_end, pfd);
-	}	
+		data->map->coll->amount-=1;
+		move_player(data, pos, pfd);
+	}
 	return (1);
 }
 
-void  move_player(t_map *map, size_t start, size_t end, int pfd)
+void  move_player(t_data *data, size_t *pos, int pfd)
 {
-	if(map->bitmap[end] == 'E')
+	t_map *map;
+	int prev_ext;
+
+	map = data->map;
+	if(map->bitmap[pos[1]] == 'E')
 		map->exit->amount = 0;
+	prev_ext = 0;
 	if (pfd == 0)
-	{
+	{ 
 		if (map->player->x == map->exit->x && map->player->y == map->exit->y)
-			set_char_map(&map->bitmap[start], &map->bitmap[end], 'E', 'P');
+		{
+			prev_ext = 1;
+			set_char_map(&map->bitmap[pos[0]], &map->bitmap[pos[1]], 'E', 'P');
+		}
 		else
-			set_char_map(&map->bitmap[start], &map->bitmap[end], '0', 'P');
+			set_char_map(&map->bitmap[pos[0]], &map->bitmap[pos[1]], '0', 'P');
 		map->player->mvt += 1;
 	}
 	if (pfd == 1)
-		set_char_map(&map->bitmap[start], &map->bitmap[end], 'x', 'P');
-	set_player_pos(map, end);
+		set_char_map(&map->bitmap[pos[0]], &map->bitmap[1], 'x', 'P');
+	set_player_pos(map, pos[1]);
+	if (pfd == 0)
+		draw_sprt(data, pos[0], prev_ext);
 }
 
 void set_char_map(char *start_str, char *end_str, char start, char end)

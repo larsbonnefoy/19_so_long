@@ -6,7 +6,7 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 10:48:39 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/24 11:19:39 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/24 17:02:30 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ t_sprt *init_sprt(t_data *data)
 	sprt->p_r = mlx_xpm_file_to_image(data->mlx, "./img/p_r", &wth, &hgt);
 	sprt->cl = mlx_xpm_file_to_image(data->mlx, "./img/coll", &wth, &hgt);
 	sprt->wl = mlx_xpm_file_to_image(data->mlx, "./img/wall", &wth, &hgt);
+	sprt->e_o = mlx_xpm_file_to_image(data->mlx, "./img/e_o", &wth, &hgt);
+	sprt->e_c = mlx_xpm_file_to_image(data->mlx, "./img/e_c", &wth, &hgt);
+	sprt->clear = mlx_xpm_file_to_image(data->mlx, "./img/clear", &wth, &hgt);
 	return (sprt);
 }
 
@@ -63,9 +66,38 @@ void load_map(t_data *data)
 			mlx_put_image_to_window(data->mlx, data->win, data->sprt->p_r, get_col(data->map, i)*32, get_line(data->map, i)*32);	
 		if (data->map->bitmap[i] == 'C')
 			mlx_put_image_to_window(data->mlx, data->win, data->sprt->cl, get_col(data->map, i)*32, get_line(data->map, i)*32);	
+		if (data->map->bitmap[i] == 'E')
+			mlx_put_image_to_window(data->mlx, data->win, data->sprt->e_c, get_col(data->map, i)*32, get_line(data->map, i)*32);	
 		i++;
 	}
+}
 
+void put_player(t_data *data, int x, int y)
+{
+	mlx_put_image_to_window(data->mlx, data->win, data->sprt->p_r, x*32, y*32);	
+}
 
+void clear(t_data *data, int x, int y)
+{
+	mlx_put_image_to_window(data->mlx, data->win, data->sprt->clear, x*32, y*32);	
+}
 
+void put_exit(t_data *data, int x, int y)
+{
+	mlx_put_image_to_window(data->mlx, data->win, data->sprt->e_c, x*32, y*32);	
+}
+
+void draw_sprt(t_data *data, size_t prev_pos, int prev_ext)
+{
+	if (prev_ext == 1)
+	{
+		put_player(data, data->map->player->x, data->map->player->y);
+		clear(data, get_col(data->map, prev_pos), get_line(data->map, prev_pos));	
+		put_exit(data, get_col(data->map, prev_pos), get_line(data->map, prev_pos));	
+	}
+	else
+	{
+		put_player(data, data->map->player->x, data->map->player->y);
+		clear(data, get_col(data->map, prev_pos), get_line(data->map, prev_pos));	
+	}
 }

@@ -6,13 +6,12 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:34:41 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/22 17:31:02 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/24 11:32:21 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void init_window(t_map *map);
+#include "sprites.h"
 
 int main(int argc, char **argv)
 {
@@ -31,21 +30,9 @@ int main(int argc, char **argv)
 		no_path_error(&map, &map_cpy);
 	free_map(&map_cpy);
 	init_window(&map);	
-	
+
 	free_map(&map);
 	return (0);
-}
-
-void init_window(t_map *map)
-{
-	void *mlx;
-	void *mlx_win;
-	
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, map->x*64, map->y*64, "./so_long");
-	mlx_key_hook(mlx_win, key_hook, &map);
-	
-	mlx_loop(mlx);
 }
 
 void print_map(t_map *map)

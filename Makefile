@@ -6,7 +6,7 @@
 #    By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/11 13:10:56 by lbonnefo          #+#    #+#              #
-#    Updated: 2022/11/22 10:20:36 by lbonnefo         ###   ########.fr        #
+#    Updated: 2022/11/24 10:50:20 by lbonnefo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS =	main.c \
 		struct_cpy.c \
 		key_hook.c \
 		errors.c \
+		map_loading.c \
 
 OBJ = $(SRCS:.c=.o)
 

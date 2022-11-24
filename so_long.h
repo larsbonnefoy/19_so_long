@@ -6,14 +6,13 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:22:12 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/22 17:02:02 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/24 11:32:36 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 #define SO_LONG_H
 
-#include "mlx/mlx.h"
 #include "gnl/get_next_line.h" //inclure la librairie directement i guess au lieu d'inclure tous les .h
 #include "19_libft/libft.h"
 #include "19_ft_printf/ft_printf.h"
@@ -22,6 +21,16 @@
 #include <unistd.h> 
 #include <stdio.h>
 #define FAILURE 1
+
+
+typedef struct s_sprites
+{
+	int		i_w;
+	int		i_h;
+	void	*p_r;
+	void	*cl;
+	void	*wl;
+}	t_sprt;
 
 typedef struct s_collectible {
 	
@@ -56,6 +65,15 @@ typedef struct s_map {
 	t_coll		*coll;
 }	t_map;
 
+typedef struct s_data
+{
+	void	*mlx;
+	void	*win;
+	t_map	*map;
+	t_sprt	*sprt;
+
+}	t_data;
+
 void print_map(t_map *map);
 
 void	get_map(char *name, t_map *map);
@@ -78,7 +96,7 @@ int		check_done_pfd(t_map *map);
 void 	struct_cpy(t_map *map_cpy, t_map *map);
 void	free_map(t_map *map);
 
-int		key_hook(int keycode, t_map *map);
+int		key_hook(int keycode, t_data *data);
 
 void 	line_error(t_map *map, char *str);
 void	token_error(t_map *map);

@@ -13,10 +13,10 @@
 #include "so_long.h"
 #include "sprites.h"
 
-void move_player(t_data *data, size_t *pos, int pfd);
+void move_player(t_data *data, size_t *pos);
 void set_char_map(char *start_str, char *end_str, char start, char end);
 
-int	move_up(t_data *data, int pfd)
+int	move_up(t_data *data)
 {
 	size_t pos_start;
 	size_t pos_end;
@@ -29,16 +29,16 @@ int	move_up(t_data *data, int pfd)
 	if (data->map->bitmap[pos_end] == '1' || data->map->bitmap[pos_end] == 'x')
 		return (0);
 	if (data->map->bitmap[pos_end] == 'E' || data->map->bitmap[pos_end] == '0')
-		move_player(data, pos, pfd);
+		move_player(data, pos);
 	if (data->map->bitmap[pos_end] == 'C')
 	{
 		data->map->coll->amount-=1;
-		move_player(data, pos, pfd);
+		move_player(data, pos);
 	}
 	return (1);
 }
 
-int	move_down(t_data *data, int pfd)
+int	move_down(t_data *data)
 {
 	size_t pos_start;
 	size_t pos_end;
@@ -51,16 +51,16 @@ int	move_down(t_data *data, int pfd)
 	if (data->map->bitmap[pos_end] == '1' || data->map->bitmap[pos_end] == 'x')
 		return (0);
 	if (data->map->bitmap[pos_end] == 'E' || data->map->bitmap[pos_end] == '0')
-		move_player(data, pos, pfd);
+		move_player(data, pos);
 	if (data->map->bitmap[pos_end] == 'C')
 	{
 		data->map->coll->amount-=1;
-		move_player(data, pos, pfd);
+		move_player(data, pos);
 	}
 	return (1);
 }
 
-int	move_left(t_data *data, int pfd)
+int	move_left(t_data *data)
 {
 	size_t pos_start;
 	size_t pos_end;
@@ -73,16 +73,16 @@ int	move_left(t_data *data, int pfd)
 	if (data->map->bitmap[pos_end] == '1' || data->map->bitmap[pos_end] == 'x')
 		return (0);
 	if (data->map->bitmap[pos_end] == 'E' || data->map->bitmap[pos_end] == '0')
-		move_player(data, pos, pfd);
+		move_player(data, pos);
 	if (data->map->bitmap[pos_end] == 'C')
 	{
 		data->map->coll->amount-=1;
-		move_player(data, pos, pfd);
+		move_player(data, pos);
 	}
 	return (1);
 }
 
-int	move_right(t_data *data, int pfd)
+int	move_right(t_data *data)
 {
 	size_t pos_start;
 	size_t pos_end;
@@ -95,16 +95,16 @@ int	move_right(t_data *data, int pfd)
 	if (data->map->bitmap[pos_end] == '1' || data->map->bitmap[pos_end] == 'x')
 		return (0);
 	if (data->map->bitmap[pos_end] == 'E' || data->map->bitmap[pos_end] == '0')
-		move_player(data, pos, pfd);
+		move_player(data, pos);
 	if (data->map->bitmap[pos_end] == 'C')
 	{
 		data->map->coll->amount-=1;
-		move_player(data, pos, pfd);
+		move_player(data, pos);
 	}
 	return (1);
 }
 
-void  move_player(t_data *data, size_t *pos, int pfd)
+void  move_player(t_data *data, size_t *pos)
 {
 	t_map *map;
 	int prev_ext;
@@ -113,22 +113,16 @@ void  move_player(t_data *data, size_t *pos, int pfd)
 	if(map->bitmap[pos[1]] == 'E')
 		map->exit->amount = 0;
 	prev_ext = 0;
-	if (pfd == 0)
-	{ 
-		if (map->player->x == map->exit->x && map->player->y == map->exit->y)
-		{
-			prev_ext = 1;
-			set_char_map(&map->bitmap[pos[0]], &map->bitmap[pos[1]], 'E', 'P');
-		}
-		else
-			set_char_map(&map->bitmap[pos[0]], &map->bitmap[pos[1]], '0', 'P');
-		map->player->mvt += 1;
+	if (map->player->x == map->exit->x && map->player->y == map->exit->y)
+	{
+		prev_ext = 1;
+		set_char_map(&map->bitmap[pos[0]], &map->bitmap[pos[1]], 'E', 'P');
 	}
-	if (pfd == 1)
-		set_char_map(&map->bitmap[pos[0]], &map->bitmap[1], 'x', 'P');
+	else
+		set_char_map(&map->bitmap[pos[0]], &map->bitmap[pos[1]], '0', 'P');
+	map->player->mvt += 1;
 	set_player_pos(map, pos[1]);
-	if (pfd == 0)
-		draw_sprt(data, pos[0], prev_ext);
+	draw_sprt(data, pos[0], prev_ext);
 }
 
 void set_char_map(char *start_str, char *end_str, char start, char end)

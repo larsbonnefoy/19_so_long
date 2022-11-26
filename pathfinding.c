@@ -13,31 +13,32 @@
 #include "so_long.h"
 int check_done_pfd(t_map *map);
 
-int	pathfinding(t_data *dt, int prev_pos_x, int prev_pos_y)
+int	pathfinding(t_map *map, int prev_pos_x, int prev_pos_y)
 {
-	int (*move[4])(t_data *dt, int pfd);
+	int (*move[4])(t_map *map);
 	int i;
 	
-	if (check_done_pfd(dt->map) == 1)
+	if (check_done_pfd(map) == 1)
 		return (0);
-	move[0] = &move_up;
-	move[1] = &move_right;
-	move[2] = &move_down;
-	move[3] = &move_left;
+	move[0] = &move_up_pfd;
+	move[1] = &move_right_pfd;
+	move[2] = &move_down_pfd;
+	move[3] = &move_left_pfd;
 	i = 0;
 	while (i < 4)
 	{
-		dt->map->bitmap[get_pos_str(dt->map, prev_pos_x, prev_pos_y)] = 'P';
-		if(move[i](dt, 1) == 1)
+		map->bitmap[get_pos_str(map, prev_pos_x, prev_pos_y)] = 'P';
+		if(move[i](map) == 1)
 		{	
-			pathfinding(dt, dt->map->player->x, dt->map->player->y);
-			if (check_done_pfd(dt->map) == 1)
+			pathfinding(map, map->player->x, map->player->y);
+			//print_map(map);
+			if (check_done_pfd(map) == 1)
 				return (0);
-			set_player_pos(dt->map, get_pos_str(dt->map, prev_pos_x, prev_pos_y));
+			set_player_pos(map, get_pos_str(map, prev_pos_x, prev_pos_y));
 		}
 		i++;
 	}	
-	dt->map->bitmap[get_pos_str(dt->map, dt->map->player->x, dt->map->player->y)] = 'x';
+	map->bitmap[get_pos_str(map, map->player->x, map->player->y)] = 'x';
 	return (-1);
 }
 

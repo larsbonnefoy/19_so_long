@@ -22,13 +22,13 @@ int	key_hook(int keycode, t_data *data)
 	if(keycode == 53)
 		exit(1);	
 	if(keycode == 13)
-		move_up(data, 0);
+		move_up(data);
 	if(keycode == 1)
-		move_down(data, 0);
+		move_down(data);
 	if(keycode == 2)
-		move_right(data, 0);
+		move_right(data);
 	if(keycode == 0)
-		move_left(data, 0);
+		move_left(data);
 	//print_map(data->map);
 	//ft_printf("%d\n", data->map->player->mvt);
 	//print_map(data->map);

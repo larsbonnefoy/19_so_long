@@ -17,6 +17,7 @@ SRCS =	main.c \
 		utils_parsing.c \
 		struct_init.c \
 		player_mvt.c \
+		player_mvt_pfd.c \
 		pathfinding.c \
 		struct_cpy.c \
 		key_hook.c \
@@ -25,7 +26,7 @@ SRCS =	main.c \
 
 OBJ = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 
 ###LIB INCLUDES###
 

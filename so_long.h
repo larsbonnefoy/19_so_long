@@ -88,12 +88,16 @@ void	init_map(t_map *map);
 void	set_player_pos(t_map *map, size_t pos_in_str);
 void	set_exit_pos(t_map *map, size_t pos_in_str);
 
-int		move_up(t_data *data, int pfd);
-int		move_down(t_data *data, int pfd);
-int		move_left(t_data *data, int pfd);
-int		move_right(t_data *data, int pfd);
+int		move_up(t_data *data);
+int		move_up_pfd(t_map *map);
+int		move_down(t_data *data);
+int		move_down_pfd(t_map *map);
+int		move_left(t_data *data);
+int		move_left_pfd(t_map *map);
+int		move_right(t_data *data);
+int		move_right_pfd(t_map *map);
 
-int		pathfinding(t_data *data, int prev_pos_x, int prev_pos_y);
+int		pathfinding(t_map *map, int prev_pos_x, int prev_pos_y);
 int		check_done_pfd(t_map *map);
 
 void 	struct_cpy(t_map *map_cpy, t_map *map);

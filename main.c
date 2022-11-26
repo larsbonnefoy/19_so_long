@@ -18,7 +18,6 @@ int main(int argc, char **argv)
 	t_map map;
 	t_map map_cpy;
 	t_data data;
-	t_data datacpy;
 
 	input_error(argc, argv);
 	init_map(&map);
@@ -29,8 +28,7 @@ int main(int argc, char **argv)
 		empty_doc(&map);
 	check_map(&map);	
 	struct_cpy(&map_cpy, &map);	
-	datacpy.map = &map_cpy;
-	if (pathfinding(&datacpy, map_cpy.player->x, map_cpy.player->y) == -1)
+	if (pathfinding(&map_cpy, map_cpy.player->x, map_cpy.player->y) == -1)
 		no_path_error(&map, &map_cpy);
 	free_map(&map_cpy);
 	

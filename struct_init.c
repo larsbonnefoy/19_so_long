@@ -12,11 +12,11 @@
 
 #include "so_long.h"
 
-t_player *init_player();
-t_exit *init_exit();
-t_coll *init_coll(); 
+t_player	*init_player(void);
+t_exit		*init_exit(void);
+t_coll		*init_coll(void);
 
-void init_map(t_map *map)
+void	init_map(t_map *map)
 {
 	map->bitmap = NULL;
 	map->x = 0;
@@ -26,10 +26,10 @@ void init_map(t_map *map)
 	map->coll = init_coll();
 }
 
-t_player *init_player()
+t_player	*init_player(void)
 {
-	t_player *player;
-	
+	t_player	*player;
+
 	player = malloc(sizeof(t_player));
 	if (!player)
 		exit(1);
@@ -37,14 +37,14 @@ t_player *init_player()
 	player->y = 0;
 	player->status = 0;
 	player->amount = 0;
-	player->mvt= 0;
+	player->mvt = 0;
 	return (player);
 }
 
-t_exit *init_exit()
+t_exit	*init_exit(void)
 {
-	t_exit *exit_map;
-	
+	t_exit	*exit_map;
+
 	exit_map = malloc(sizeof(t_exit));
 	if (!exit_map)
 		exit(1);
@@ -55,9 +55,9 @@ t_exit *init_exit()
 	return (exit_map);
 }
 
-t_coll *init_coll()
+t_coll	*init_coll(void)
 {
-	t_coll *coll;
+	t_coll	*coll;
 
 	coll = malloc(sizeof(t_coll));
 	if (!coll)

@@ -22,7 +22,10 @@ SRCS =	main.c \
 		struct_cpy.c \
 		key_hook.c \
 		errors.c \
+		errors2.c \
 		map_loading.c \
+		draw_sprt.c \
+		draw_sprt2.c \
 
 OBJ = $(SRCS:.c=.o)
 

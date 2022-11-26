@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void struct_cpy(t_map *map_cpy, t_map *map)
+void	struct_cpy(t_map *map_cpy, t_map *map)
 {
 	map_cpy->bitmap = ft_strdup(map->bitmap);
 	if (map_cpy->bitmap == NULL)
@@ -23,7 +23,7 @@ void struct_cpy(t_map *map_cpy, t_map *map)
 	map_cpy->player->y = map->player->y;
 	map_cpy->player->status = map->player->status;
 	map_cpy->player->amount = map->player->amount;
-	map_cpy->player->mvt= map->player->mvt;
+	map_cpy->player->mvt = map->player->mvt;
 	map_cpy->exit->x = map->exit->x;
 	map_cpy->exit->y = map->exit->y;
 	map_cpy->exit->status = map->exit->status;
@@ -31,7 +31,7 @@ void struct_cpy(t_map *map_cpy, t_map *map)
 	map_cpy->coll->amount = map->coll->amount;
 }
 
-void free_map(t_map *map)
+void	free_map(t_map *map)
 {
 	free(map->bitmap);
 	free(map->player);

@@ -11,13 +11,14 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-int check_done_pfd(t_map *map);
+
+int	check_done_pfd(t_map *map);
 
 int	pathfinding(t_map *map, int prev_pos_x, int prev_pos_y)
 {
-	int (*move[4])(t_map *map);
-	int i;
-	
+	int	(*move[4])(t_map *map);
+	int	i;
+
 	if (check_done_pfd(map) == 1)
 		return (0);
 	move[0] = &move_up_pfd;
@@ -28,7 +29,7 @@ int	pathfinding(t_map *map, int prev_pos_x, int prev_pos_y)
 	while (i < 4)
 	{
 		map->bitmap[get_pos_str(map, prev_pos_x, prev_pos_y)] = 'P';
-		if(move[i](map) == 1)
+		if (move[i](map) == 1)
 		{	
 			pathfinding(map, map->player->x, map->player->y);
 			//print_map(map);
@@ -42,13 +43,12 @@ int	pathfinding(t_map *map, int prev_pos_x, int prev_pos_y)
 	return (-1);
 }
 
-int check_done_pfd(t_map *map)
+int	check_done_pfd(t_map *map)
 {
-	if (map->exit->amount == 0 && map->coll->amount == 0) 
+	if (map->exit->amount == 0 && map->coll->amount == 0)
 	{
 		map->exit->status = 1;
 		return (1);
 	}
 	return (0);
-
 }

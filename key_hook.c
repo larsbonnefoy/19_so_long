@@ -13,21 +13,21 @@
 #include "so_long.h"
 #include "sprites.h"
 
-int check_end(t_map *map);
+int	check_end(t_map *map);
 
 int	key_hook(int keycode, t_data *data)
 {
-	if(check_end(data->map) == 1)
+	if (check_end(data->map) == 1)
 		exit(1);
-	if(keycode == 53)
-		exit(1);	
-	if(keycode == 13)
+	if (keycode == 53)
+		exit(1);
+	if (keycode == 13)
 		move_up(data);
-	if(keycode == 1)
+	if (keycode == 1)
 		move_down(data);
-	if(keycode == 2)
+	if (keycode == 2)
 		move_right(data);
-	if(keycode == 0)
+	if (keycode == 0)
 		move_left(data);
 	//print_map(data->map);
 	//ft_printf("%d\n", data->map->player->mvt);
@@ -36,7 +36,7 @@ int	key_hook(int keycode, t_data *data)
 	return (0);
 }
 
-int check_end(t_map *map)
+int	check_end(t_map *map)
 {
 	if (map->player->x == map->exit->x && map->player->y == map->exit->y)
 	{

@@ -12,14 +12,13 @@
 
 #include "so_long.h"
 
-void move_player_pfd(t_map *map, size_t start, size_t end);
-void set_char_map_pfd(char *start_str, char *end_str, char start, char end);
+void	move_player_pfd(t_map *map, size_t start, size_t end);
 
 int	move_up_pfd(t_map *map)
 {
-	size_t pos_start;
-	size_t pos_end;
-	
+	size_t	pos_start;
+	size_t	pos_end;
+
 	pos_start = get_pos_str(map, map->player->x, map->player->y);
 	pos_end = pos_start - (size_t)(map->x);
 	if (map->bitmap[pos_end] == '1' || map->bitmap[pos_end] == 'x')
@@ -28,17 +27,17 @@ int	move_up_pfd(t_map *map)
 		move_player_pfd(map, pos_start, pos_end);
 	if (map->bitmap[pos_end] == 'C')
 	{
-		map->coll->amount-=1;
+		map->coll->amount -= 1;
 		move_player_pfd(map, pos_start, pos_end);
 	}
 	return (1);
 }
 
-int move_down_pfd(t_map *map)
+int	move_down_pfd(t_map *map)
 {
-	size_t pos_start;
-	size_t pos_end;
-	
+	size_t	pos_start;
+	size_t	pos_end;
+
 	pos_start = get_pos_str(map, map->player->x, map->player->y);
 	pos_end = pos_start + (size_t)(map->x);
 	if (map->bitmap[pos_end] == '1' || map->bitmap[pos_end] == 'x')
@@ -47,17 +46,17 @@ int move_down_pfd(t_map *map)
 		move_player_pfd(map, pos_start, pos_end);
 	if (map->bitmap[pos_end] == 'C')
 	{
-		map->coll->amount-=1;
+		map->coll->amount -= 1;
 		move_player_pfd(map, pos_start, pos_end);
 	}
 	return (1);
 }
 
-int move_left_pfd(t_map *map)
+int	move_left_pfd(t_map *map)
 {
-	size_t pos_start;
-	size_t pos_end;
-	
+	size_t	pos_start;
+	size_t	pos_end;
+
 	pos_start = get_pos_str(map, map->player->x, map->player->y);
 	pos_end = pos_start - 1;
 	if (map->bitmap[pos_end] == '1' || map->bitmap[pos_end] == 'x')
@@ -66,7 +65,7 @@ int move_left_pfd(t_map *map)
 		move_player_pfd(map, pos_start, pos_end);
 	if (map->bitmap[pos_end] == 'C')
 	{
-		map->coll->amount-=1;
+		map->coll->amount -= 1;
 		move_player_pfd(map, pos_start, pos_end);
 	}
 	return (1);
@@ -74,9 +73,9 @@ int move_left_pfd(t_map *map)
 
 int	move_right_pfd(t_map *map)
 {
-	size_t pos_start;
-	size_t pos_end;
-	
+	size_t	pos_start;
+	size_t	pos_end;
+
 	pos_start = get_pos_str(map, map->player->x, map->player->y);
 	pos_end = pos_start + 1;
 	if (map->bitmap[pos_end] == '1' || map->bitmap[pos_end] == 'x')
@@ -85,22 +84,17 @@ int	move_right_pfd(t_map *map)
 		move_player_pfd(map, pos_start, pos_end);
 	if (map->bitmap[pos_end] == 'C')
 	{
-		map->coll->amount-=1;
+		map->coll->amount -= 1;
 		move_player_pfd(map, pos_start, pos_end);
 	}	
 	return (1);
 }
 
-void  move_player_pfd(t_map *map, size_t start, size_t end)
+void	move_player_pfd(t_map *map, size_t start, size_t end)
 {
-	if(map->bitmap[end] == 'E')
+	if (map->bitmap[end] == 'E')
 		map->exit->amount = 0;
-	set_char_map_pfd(&map->bitmap[start], &map->bitmap[end], 'x', 'P');
+	map->bitmap[start] = 'x';
+	map->bitmap[end] = 'P';
 	set_player_pos(map, end);
-}
-
-void set_char_map_pfd(char *start_str, char *end_str, char start, char end)
-{
-	*start_str = start;
-	*end_str = end;
 }

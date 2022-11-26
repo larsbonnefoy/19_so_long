@@ -13,18 +13,20 @@
 #include "so_long.h"
 #include "sprites.h"
 
-void move_player(t_data *data, size_t *pos);
-void set_char_map(char *start_str, char *end_str, char start, char end);
+void	move_player(t_data *data, size_t *pos);
+void	set_char_map(char *start_str, char *end_str, char start, char end);
 
 int	move_up(t_data *data)
 {
-	size_t pos_start;
-	size_t pos_end;
-	size_t pos[2];
+	size_t		pos_beg;
+	size_t		pos_end;
+	size_t		pos[2];
+	t_player	*player;
 
-	pos_start = get_pos_str(data->map, data->map->player->x, data->map->player->y);
-	pos_end = pos_start - (size_t)(data->map->x);
-	pos[0] = pos_start; 
+	player = data->map->player;
+	pos_beg = get_pos_str(data->map, player->x, player->y);
+	pos_end = pos_beg - (size_t)(data->map->x);
+	pos[0] = pos_beg;
 	pos[1] = pos_end;
 	if (data->map->bitmap[pos_end] == '1' || data->map->bitmap[pos_end] == 'x')
 		return (0);
@@ -32,7 +34,7 @@ int	move_up(t_data *data)
 		move_player(data, pos);
 	if (data->map->bitmap[pos_end] == 'C')
 	{
-		data->map->coll->amount-=1;
+		data->map->coll->amount -= 1;
 		move_player(data, pos);
 	}
 	return (1);
@@ -40,13 +42,15 @@ int	move_up(t_data *data)
 
 int	move_down(t_data *data)
 {
-	size_t pos_start;
-	size_t pos_end;
-	size_t pos[2];
-	
-	pos_start = get_pos_str(data->map, data->map->player->x, data->map->player->y);
-	pos_end = pos_start + (size_t)(data->map->x);
-	pos[0] = pos_start; 
+	size_t		pos_beg;
+	size_t		pos_end;
+	size_t		pos[2];
+	t_player	*player;
+
+	player = data->map->player;
+	pos_beg = get_pos_str(data->map, player->x, player->y);
+	pos_end = pos_beg + (size_t)(data->map->x);
+	pos[0] = pos_beg;
 	pos[1] = pos_end;
 	if (data->map->bitmap[pos_end] == '1' || data->map->bitmap[pos_end] == 'x')
 		return (0);
@@ -54,7 +58,7 @@ int	move_down(t_data *data)
 		move_player(data, pos);
 	if (data->map->bitmap[pos_end] == 'C')
 	{
-		data->map->coll->amount-=1;
+		data->map->coll->amount -= 1;
 		move_player(data, pos);
 	}
 	return (1);
@@ -62,13 +66,15 @@ int	move_down(t_data *data)
 
 int	move_left(t_data *data)
 {
-	size_t pos_start;
-	size_t pos_end;
-	size_t pos[2];
-	
-	pos_start = get_pos_str(data->map, data->map->player->x, data->map->player->y);
-	pos_end = pos_start - 1; 
-	pos[0] = pos_start; 
+	size_t		pos_beg;
+	size_t		pos_end;
+	size_t		pos[2];
+	t_player	*player;
+
+	player = data->map->player;
+	pos_beg = get_pos_str(data->map, player->x, player->y);
+	pos_end = pos_beg - 1;
+	pos[0] = pos_beg;
 	pos[1] = pos_end;
 	if (data->map->bitmap[pos_end] == '1' || data->map->bitmap[pos_end] == 'x')
 		return (0);
@@ -76,7 +82,7 @@ int	move_left(t_data *data)
 		move_player(data, pos);
 	if (data->map->bitmap[pos_end] == 'C')
 	{
-		data->map->coll->amount-=1;
+		data->map->coll->amount -= 1;
 		move_player(data, pos);
 	}
 	return (1);
@@ -84,13 +90,15 @@ int	move_left(t_data *data)
 
 int	move_right(t_data *data)
 {
-	size_t pos_start;
-	size_t pos_end;
-	size_t pos[2];
-	
-	pos_start = get_pos_str(data->map, data->map->player->x, data->map->player->y);
-	pos_end = pos_start + 1; 
-	pos[0] = pos_start; 
+	size_t		pos_beg;
+	size_t		pos_end;
+	size_t		pos[2];
+	t_player	*player;
+
+	player = data->map->player;
+	pos_beg = get_pos_str(data->map, player->x, player->y);
+	pos_end = pos_beg + 1;
+	pos[0] = pos_beg;
 	pos[1] = pos_end;
 	if (data->map->bitmap[pos_end] == '1' || data->map->bitmap[pos_end] == 'x')
 		return (0);
@@ -98,19 +106,19 @@ int	move_right(t_data *data)
 		move_player(data, pos);
 	if (data->map->bitmap[pos_end] == 'C')
 	{
-		data->map->coll->amount-=1;
+		data->map->coll->amount -= 1;
 		move_player(data, pos);
 	}
 	return (1);
 }
 
-void  move_player(t_data *data, size_t *pos)
+void	move_player(t_data *data, size_t *pos)
 {
-	t_map *map;
-	int prev_ext;
+	t_map	*map;
+	int		prev_ext;
 
 	map = data->map;
-	if(map->bitmap[pos[1]] == 'E')
+	if (map->bitmap[pos[1]] == 'E')
 		map->exit->amount = 0;
 	prev_ext = 0;
 	if (map->player->x == map->exit->x && map->player->y == map->exit->y)
@@ -125,7 +133,7 @@ void  move_player(t_data *data, size_t *pos)
 	draw_sprt(data, pos[0], prev_ext);
 }
 
-void set_char_map(char *start_str, char *end_str, char start, char end)
+void	set_char_map(char *start_str, char *end_str, char start, char end)
 {
 	*start_str = start;
 	*end_str = end;

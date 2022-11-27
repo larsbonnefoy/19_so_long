@@ -29,10 +29,6 @@ int	key_hook(int keycode, t_data *data)
 		move_right(data);
 	if (keycode == 0)
 		move_left(data);
-	//print_map(data->map);
-	//ft_printf("%d\n", data->map->player->mvt);
-	//print_map(data->map);
-	//load_map(data);
 	return (0);
 }
 

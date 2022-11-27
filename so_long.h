@@ -25,12 +25,7 @@ typedef struct s_sprites
 {
 	int		i_w;
 	int		i_h;
-	void	*p_r;
-	void	*cl;
-	void	*wl;
-	void	*e_o;
-	void	*e_c;
-	void	*clear;
+	void	*spr[5];
 }	t_sprt;
 
 typedef struct s_collectible {

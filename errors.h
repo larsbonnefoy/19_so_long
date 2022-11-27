@@ -12,5 +12,7 @@ void	empty_doc(t_map *map);
 void	input_error(int argc, char **argv);
 void	line_error(t_map *map, char *str);
 void	fd_error(t_map *map);
+void	sprit_error(t_data *data);
+void	mlx_error(t_data *data, int error_nb);
 
 #endif

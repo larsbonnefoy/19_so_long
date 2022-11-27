@@ -21,33 +21,27 @@ int	main(int argc, char **argv)
 	t_data	data;
 	int		fd;
 
-
 	input_error(argc, argv);
-
 	init_map(&map);
 	data.map = &map;
 	init_map(&map_cpy);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		fd_error(&map);
-
 	get_map(fd, &map);
-
 	if (map.bitmap == NULL)
 		empty_doc(&map);
 	check_map(&map);
-
 	struct_cpy(&map_cpy, &map);
 	if (pathfinding(&map_cpy, map_cpy.player->x, map_cpy.player->y) == -1)
 		no_path_error(&map, &map_cpy);
 	free_map(&map_cpy);
-
 	init_window(&map);
-
+	mlx_destroy_window(data.mlx, data.win);
 	free_map(&map);
 	return (0);
 }
-
+/*
 void print_map(t_map *map)
 {
 	int line;
@@ -71,4 +65,4 @@ void print_map(t_map *map)
 		line++;
 	}
 	usleep(3000);
-}
+}*/

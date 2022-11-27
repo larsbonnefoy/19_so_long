@@ -12,8 +12,11 @@
 
 #include "so_long.h"
 #include "sprites.h"
+#include "errors.h"
 
 void	load_map(t_data *data);
+void	check_sprt(t_sprt *sprt, void *img, t_data *data, int to_free);
+void	set_sprt_to_null(t_sprt *sprt);
 
 void	init_window(t_map *map)
 {
@@ -22,7 +25,11 @@ void	init_window(t_map *map)
 	t_data	data;
 
 	mlx = mlx_init();
+	if (mlx == NULL)
+		mlx_error(&data, 0);
 	win = mlx_new_window(mlx, map->x * 32, map->y * 32, "./so_long");
+	if (win == NULL)
+		mlx_error(&data, 1);
 	data.mlx = mlx;
 	data.win = win;
 	data.map = map;
@@ -38,17 +45,38 @@ t_sprt	*init_sprt(t_data *data)
 	int		hgt;
 	int		wth;
 
-sprt = malloc(sizeof(t_sprt));
+	sprt = malloc(sizeof(t_sprt));
 	if (!(sprt))
 		exit(1);
 	hgt = sprt->i_h;
 	wth = sprt->i_w;
-	sprt->p_r = mlx_xpm_file_to_image(data->mlx, "./img/p_r", &wth, &hgt);
-	sprt->cl = mlx_xpm_file_to_image(data->mlx, "./img/coll", &wth, &hgt);
-	sprt->wl = mlx_xpm_file_to_image(data->mlx, "./img/wall", &wth, &hgt);
-	sprt->e_c = mlx_xpm_file_to_image(data->mlx, "./img/e_c", &wth, &hgt);
-	sprt->clear = mlx_xpm_file_to_image(data->mlx, "./img/clear", &wth, &hgt);
+	sprt->spr[0] = mlx_xpm_file_to_image(data->mlx, "./img/p_r", &wth, &hgt);
+	check_sprt(sprt, sprt->spr[0], data, 1);
+	sprt->spr[1] = mlx_xpm_file_to_image(data->mlx, "./img/coll", &wth, &hgt);
+	check_sprt(sprt, sprt->spr[1], data, 2);
+	sprt->spr[2] = mlx_xpm_file_to_image(data->mlx, "./img/wall", &wth, &hgt);
+	check_sprt(sprt, sprt->spr[2], data, 3);
+	sprt->spr[3] = mlx_xpm_file_to_image(data->mlx, "./img/e_c", &wth, &hgt);
+	check_sprt(sprt, sprt->spr[3], data, 4);
+	sprt->spr[4] = mlx_xpm_file_to_image(data->mlx, "./img/clear", &wth, &hgt);
+	check_sprt(sprt, sprt->spr[4], data, 5);
 	return (sprt);
+}
+
+void	check_sprt(t_sprt *sprt, void *img, t_data *data, int to_free)
+{	
+	int	i;
+
+	i = 0;
+	if (img == NULL)
+	{
+		while (i < to_free)
+		{
+			free(sprt->spr[i]);
+			i++;
+		}
+		sprit_error(data);
+	}
 }
 
 void	load_map(t_data *data)

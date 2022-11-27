@@ -33,7 +33,7 @@ int	ft_printf(const char *format, ...)
 			ft_conversion(a, ap, format, &rtn);
 		}
 		else
-			ft_putchar_fd_printf(format[a], 1, &rtn);
+			ft_putchar_fd_printf(format[a], 2, &rtn);
 		a++;
 	}
 	va_end(ap);
@@ -43,19 +43,19 @@ int	ft_printf(const char *format, ...)
 static void	ft_conversion(int a, va_list ap, const char *format, int *rtn)
 {
 	if (format[a] == 'c')
-		ft_putchar_fd_printf(va_arg(ap, int), 1, rtn);
+		ft_putchar_fd_printf(va_arg(ap, int), 2, rtn);
 	else if (format[a] == 's')
-		ft_is_str(va_arg(ap, char *), 1, rtn);
+		ft_is_str(va_arg(ap, char *), 2, rtn);
 	else if (format[a] == 'p')
-		ft_is_ptr(va_arg(ap, void *), 1, rtn);
+		ft_is_ptr(va_arg(ap, void *), 2, rtn);
 	else if (format[a] == 'd' || format[a] == 'i')
-		ft_is_int(va_arg(ap, int), 1, rtn);
+		ft_is_int(va_arg(ap, int), 2, rtn);
 	else if (format[a] == 'u')
-		ft_is_unsigned(va_arg(ap, unsigned int), 1, rtn);
+		ft_is_unsigned(va_arg(ap, unsigned int), 2, rtn);
 	else if (format[a] == 'x')
-		ft_is_hex(va_arg(ap, unsigned int), "0123456789abcdef", 1, rtn);
+		ft_is_hex(va_arg(ap, unsigned int), "0123456789abcdef", 2, rtn);
 	else if (format[a] == 'X')
-		ft_is_hex(va_arg(ap, unsigned int), "0123456789ABCDEF", 1, rtn);
+		ft_is_hex(va_arg(ap, unsigned int), "0123456789ABCDEF", 2, rtn);
 	else if (format[a] == '%')
-		ft_putchar_fd_printf('%', 1, rtn);
+		ft_putchar_fd_printf('%', 2, rtn);
 }

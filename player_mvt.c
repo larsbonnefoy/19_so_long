@@ -128,6 +128,7 @@ void	move_player(t_data *data, size_t *pos)
 	else
 		set_char_map(&map->bitmap[pos[0]], &map->bitmap[pos[1]], '0', 'P');
 	map->player->mvt += 1;
+	ft_printf("%d\n", data->map->player->mvt);
 	set_player_pos(map, pos[1]);
 	draw_sprt(data, pos[0], prev_ext);
 }

@@ -1,8 +1,8 @@
 #ifndef ERRORS_H
-#define ERRORS_H
+# define ERRORS_H
 
-#include "so_long.h"
-#define FAILURE 1
+# include "so_long.h"
+# define FAILURE 1
 
 void	token_error(t_map *map);
 void	no_path_error(t_map *map, t_map *map_cpy);

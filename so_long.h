@@ -11,16 +11,15 @@
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
-#define SO_LONG_H
+# define SO_LONG_H
 
-#include "gnl/get_next_line.h" //inclure la librairie directement i guess au lieu d'inclure tous les .h
-#include "19_libft/libft.h"
-#include "19_ft_printf/ft_printf.h"
-#include <fcntl.h>
-#include <stdlib.h>
-#include <unistd.h> 
-#include <stdio.h>
-
+# include "gnl/get_next_line.h"
+# include "19_libft/libft.h"
+# include "19_ft_printf/ft_printf.h"
+# include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h> 
+# include <stdio.h>
 
 typedef struct s_sprites
 {
@@ -35,33 +34,28 @@ typedef struct s_sprites
 }	t_sprt;
 
 typedef struct s_collectible {
-	
-	int amount;
+	int	amount;
 }	t_coll;
 
 typedef struct s_player {
-	
 	int		x;
 	int		y;
-	int 	status;
+	int		status;
 	int		amount;
 	int		mvt;
 }	t_player;
 
 typedef struct s_exit {
-	
 	int		x;
 	int		y;
 	int		status;
 	int		amount;
 }	t_exit;
 
-
 typedef struct s_map {
-
 	char		*bitmap;
 	int			x;
-	int 		y;
+	int			y;
 	t_player	*player;
 	t_exit		*exit;
 	t_coll		*coll;
@@ -76,9 +70,9 @@ typedef struct s_data
 
 }	t_data;
 
-void print_map(t_map *map);
+void	print_map(t_map *map);
 
-void	get_map(char *name, t_map *map);
+void	get_map(int fd, t_map *map);
 void	check_map(t_map *map);
 int		get_line(t_map *map, size_t pos_in_str);
 int		get_col(t_map *map, size_t pos_in_str);
@@ -95,11 +89,12 @@ int		move_left(t_data *data);
 int		move_left_pfd(t_map *map);
 int		move_right(t_data *data);
 int		move_right_pfd(t_map *map);
+void	set_char_map(char *start_str, char *end_str, char start, char end);
 
 int		pathfinding(t_map *map, int prev_pos_x, int prev_pos_y);
 int		check_done_pfd(t_map *map);
 
-void 	struct_cpy(t_map *map_cpy, t_map *map);
+void	struct_cpy(t_map *map_cpy, t_map *map);
 void	free_map(t_map *map);
 
 int		key_hook(int keycode, t_data *data);

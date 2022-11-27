@@ -14,9 +14,10 @@ NAME = so_long
 
 SRCS =	main.c \
 		parsing.c \
-		utils_parsing.c \
+		parsing_utils.c \
 		struct_init.c \
 		player_mvt.c \
+		player_mvt_utils.c \
 		player_mvt_pfd.c \
 		pathfinding.c \
 		struct_cpy.c \

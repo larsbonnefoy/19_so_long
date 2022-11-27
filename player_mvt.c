@@ -14,7 +14,6 @@
 #include "sprites.h"
 
 void	move_player(t_data *data, size_t *pos);
-void	set_char_map(char *start_str, char *end_str, char start, char end);
 
 int	move_up(t_data *data)
 {
@@ -131,10 +130,4 @@ void	move_player(t_data *data, size_t *pos)
 	map->player->mvt += 1;
 	set_player_pos(map, pos[1]);
 	draw_sprt(data, pos[0], prev_ext);
-}
-
-void	set_char_map(char *start_str, char *end_str, char start, char end)
-{
-	*start_str = start;
-	*end_str = end;
 }

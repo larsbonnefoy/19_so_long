@@ -11,11 +11,10 @@
 /* ************************************************************************** */
 
 #ifndef SPRITES_H
-#define SPRITES_H
+# define SPRITES_H
 
-#include "so_long.h"
-#include "mlx/mlx.h"
-
+# include "so_long.h"
+# include "mlx/mlx.h"
 
 void	load_map(t_data *data);
 void	init_window(t_map *map);
@@ -29,4 +28,3 @@ void	put_wall(t_data *data, int x, int y);
 void	put_coll(t_data *data, int x, int y);
 
 #endif
-

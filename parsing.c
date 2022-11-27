@@ -15,19 +15,16 @@
 
 void	check_map(t_map *map);
 size_t	check_wall(t_map *map, size_t pos);
+void	add_line(t_map *map, char *new_line);
 void	add_tokens(t_map *map, size_t pos);
 
-void	get_map(char *map_file, t_map *map)
+void	get_map(int fd, t_map *map)
 {
 	char	*new_line;
-	int		fd;
 
-	fd = open(map_file, O_RDONLY);
-	if (fd == -1)
-		fd_error(map);
 	while (1)
 	{
-		new_line= get_next_line(fd);
+		new_line = get_next_line(fd);
 		if (new_line == NULL)
 			return ;
 		if (ft_strlen(new_line) < 4)
@@ -35,20 +32,25 @@ void	get_map(char *map_file, t_map *map)
 		new_line = ft_strtrimf(new_line, "\n");
 		if (!new_line)
 			return ;
-		if (map->y == 0)
-		{	
-			map->x = ft_strlen(new_line);
-			map->y += 1;
-			map->bitmap = new_line;
-		}
-		else
-		{	
-			if ((int)ft_strlen(new_line) != map->x)
-				line_error(map, new_line);
-			map->bitmap = ft_strjoinf(map->bitmap, new_line);
-			map->y += 1;
-			free(new_line);
-		}
+		add_line(map, new_line);
+	}
+}
+
+void	add_line(t_map *map, char *new_line)
+{
+	if (map->y == 0)
+	{	
+		map->x = ft_strlen(new_line);
+		map->y += 1;
+		map->bitmap = new_line;
+	}
+	else
+	{	
+		if ((int)ft_strlen(new_line) != map->x)
+			line_error(map, new_line);
+		map->bitmap = ft_strjoinf(map->bitmap, new_line);
+		map->y += 1;
+		free(new_line);
 	}
 }
 
@@ -88,7 +90,7 @@ size_t	check_wall(t_map *map, size_t pos)
 		else
 			wall_error(map, get_col(map, pos), get_line(map, pos));
 	}
-	if ((get_col(map, pos) == 0 || get_col(map, pos) == map->x-1))
+	if ((get_col(map, pos) == 0 || get_col(map, pos) == map->x - 1))
 	{
 		if (map->bitmap[pos] != '1')
 			wall_error(map, get_col(map, pos), get_line(map, pos));

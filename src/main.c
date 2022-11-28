@@ -6,7 +6,7 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:34:41 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/24 17:19:20 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/28 09:00:42 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,32 +37,5 @@ int	main(int argc, char **argv)
 		no_path_error(&map, &map_cpy);
 	free_map(&map_cpy);
 	init_window(&map);
-	mlx_destroy_window(data.mlx, data.win);
-	free_map(&map);
 	return (0);
 }
-/*
-void print_map(t_map *map)
-{
-	int line;
-	int col;
-
-	line = 0;
-	system("clear");
-	while (line < map->y)
-	{
-		col = 0;
-		printf("%d:		", line);
-		while (col < map->x)	
-		{	
-			if (map->bitmap[line*map->x + col] == 'P')
-				printf("\033[0;36m%c\e[m", 'P');
-			else
-				printf("%c", map->bitmap[line*map->x + col]);
-			col++;
-		}
-		printf("\n");
-		line++;
-	}
-	usleep(3000);
-}*/

@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   player_mvt_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 09:17:57 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/28 09:14:03 by lbonnefo         ###   ########.fr       */
+/*   Created: 2022/11/28 08:15:53 by lbonnefo          #+#    #+#             */
+/*   Updated: 2022/11/28 08:15:55 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-size_t	ft_strlen(const char *s)
+void	set_char_map(char *start_str, char *end_str, char start, char end)
 {
-	size_t	a;
-
-	if (!s)
-		return (0);
-	a = 0;
-	while (s[a] != '\0')
-		a++;
-	return (a);
+	*start_str = start;
+	*end_str = end;
 }

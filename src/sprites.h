@@ -6,7 +6,7 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 14:15:39 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/24 16:53:07 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/28 09:07:30 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SPRITES_H
 
 # include "so_long.h"
-# include "mlx/mlx.h"
+# include "../mlx/mlx.h"
 
 void	load_map(t_data *data);
 void	init_window(t_map *map);

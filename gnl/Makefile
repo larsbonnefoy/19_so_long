@@ -6,7 +6,7 @@
 #    By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 08:30:21 by lbonnefo          #+#    #+#              #
-#    Updated: 2022/11/15 08:32:02 by lbonnefo         ###   ########.fr        #
+#    Updated: 2022/11/28 09:09:37 by lbonnefo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,10 @@ OBJ = $(SRCS:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
 
 $(NAME): $(OBJ)
-		ar -rc $(NAME) $(OBJ)
+		@ar -rc $(NAME) $(OBJ)
 
 .c.o:
-		cc $(CFLAGS) -c $< -o $(<:.c=.o)
+		@cc $(CFLAGS) -c $< -o $(<:.c=.o)
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 08:07:21 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/24 15:34:13 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/28 08:16:17 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	pathfinding(t_map *map, int prev_pos_x, int prev_pos_y)
 		if (move[i](map) == 1)
 		{	
 			pathfinding(map, map->player->x, map->player->y);
-			//print_map(map);
 			if (check_done_pfd(map) == 1)
 				return (0);
 			set_player_pos(map, get_pos_str(map, prev_pos_x, prev_pos_y));

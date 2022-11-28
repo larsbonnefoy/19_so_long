@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   draw_sprt2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 09:17:57 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/28 09:14:03 by lbonnefo         ###   ########.fr       */
+/*   Created: 2022/11/28 08:15:04 by lbonnefo          #+#    #+#             */
+/*   Updated: 2022/11/28 08:15:07 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
+#include "sprites.h"
 
-size_t	ft_strlen(const char *s)
+void	put_wall(t_data *data, int x, int y)
 {
-	size_t	a;
+	void	*mlx;
+	void	*win;
 
-	if (!s)
-		return (0);
-	a = 0;
-	while (s[a] != '\0')
-		a++;
-	return (a);
+	mlx = data->mlx;
+	win = data->win;
+	mlx_put_image_to_window(mlx, win, data->sprt->spr[2], x * 32, y * 32);
+}
+
+void	put_coll(t_data *data, int x, int y)
+{
+	void	*mlx;
+	void	*win;
+
+	mlx = data->mlx;
+	win = data->win;
+	mlx_put_image_to_window(mlx, win, data->sprt->spr[1], x * 32, y * 32);
 }

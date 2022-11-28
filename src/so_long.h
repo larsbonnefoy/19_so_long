@@ -6,20 +6,19 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:22:12 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/24 15:33:02 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/28 09:07:06 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "gnl/get_next_line.h"
-# include "19_libft/libft.h"
-# include "19_ft_printf/ft_printf.h"
+# include "../gnl/get_next_line.h"
+# include "../19_libft/libft.h"
+# include "../19_ft_printf/ft_printf.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h> 
-# include <stdio.h>
 
 typedef struct s_sprites
 {
@@ -65,8 +64,6 @@ typedef struct s_data
 
 }	t_data;
 
-void	print_map(t_map *map);
-
 void	get_map(int fd, t_map *map);
 void	check_map(t_map *map);
 int		get_line(t_map *map, size_t pos_in_str);
@@ -91,6 +88,7 @@ int		check_done_pfd(t_map *map);
 
 void	struct_cpy(t_map *map_cpy, t_map *map);
 void	free_map(t_map *map);
+int		free_exit_so_long(t_data *data);
 
 int		key_hook(int keycode, t_data *data);
 

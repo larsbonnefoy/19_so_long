@@ -6,13 +6,13 @@
 #    By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/11 13:10:56 by lbonnefo          #+#    #+#              #
-#    Updated: 2022/11/24 17:18:47 by lbonnefo         ###   ########.fr        #
+#    Updated: 2022/11/28 09:10:22 by lbonnefo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SRCS =	main.c \
+FILES =	main.c \
 		parsing.c \
 		parsing_utils.c \
 		struct_init.c \
@@ -28,9 +28,11 @@ SRCS =	main.c \
 		draw_sprt.c \
 		draw_sprt2.c \
 
+SRCS = $(addprefix src/, $(FILES))
+
 OBJ = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror
 
 ###LIB INCLUDES###
 
@@ -57,9 +59,9 @@ $(NAME): $(OBJ)
 		@make -C $(PRINTF_DIR)
 		@make -C $(GNL_DIR)
 		@make -C $(MLX_DIR)
-		cc $(CFLAGS) -g $(OBJ) $(LIBFT) $(PRINTF) $(GNL) $(MLX) -o $(NAME)
+		@cc $(CFLAGS) -g $(OBJ) $(LIBFT) $(PRINTF) $(GNL) $(MLX) -o $(NAME)
 .c.o:
-		cc $(CFLAGS) -c $< -o $(<:.c=.o)
+		@cc $(CFLAGS) -c $< -o $(<:.c=.o)
 
 all: $(NAME)
 

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include<stdio.h>
 
 static int	ft_count(unsigned int nb);
 static int	ft_check_neg(int n);

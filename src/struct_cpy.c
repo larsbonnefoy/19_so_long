@@ -6,11 +6,12 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:08:14 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/22 09:20:27 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/28 09:24:10 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include "sprites.h"
 
 void	struct_cpy(t_map *map_cpy, t_map *map)
 {
@@ -37,4 +38,24 @@ void	free_map(t_map *map)
 	free(map->player);
 	free(map->exit);
 	free(map->coll);
+}
+
+void	free_sprt(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < 5)
+	{
+		free(data->sprt->spr[i]);
+		i++;
+	}
+}
+
+int	free_exit_so_long(t_data *data)
+{
+	free_map(data->map);
+	free_sprt(data);
+	mlx_destroy_window(data->mlx, data->win);
+	exit(EXIT_SUCCESS);
 }

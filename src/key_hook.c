@@ -6,7 +6,7 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:39:04 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/24 16:35:13 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/28 09:02:06 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	check_end(t_map *map);
 int	key_hook(int keycode, t_data *data)
 {
 	if (check_end(data->map) == 1)
-		exit(1);
+		free_exit_so_long(data);
 	if (keycode == 53)
-		exit(1);
+		free_exit_so_long(data);
 	if (keycode == 13)
 		move_up(data);
 	if (keycode == 1)

@@ -6,7 +6,7 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 10:48:39 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/24 17:02:30 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/28 09:00:15 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	init_window(t_map *map)
 	data.sprt = init_sprt(&data);
 	load_map(&data);
 	mlx_key_hook(win, key_hook, &data);
+	mlx_hook(data.win, 17, 0, free_exit_so_long, &data);
 	mlx_loop(mlx);
 }
 

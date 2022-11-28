@@ -6,12 +6,11 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 15:26:30 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/15 08:27:54 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/28 09:14:45 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
 
 char	*clean_cpy(char *st_chr)
 {

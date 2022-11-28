@@ -6,7 +6,7 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 10:21:07 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/22 17:00:41 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/28 09:22:39 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void	wall_error(t_map *map, int x, int y)
 {
 	ft_printf("Error\nWall missing at [%d:%d]\n", x, y);
 	free_map(map);
-	exit(FAILURE);
+	exit(EXIT_FAILURE);
 }
 
 void	wrong_char(t_map *map, int x, int y)
 {
 	ft_printf("Error\nUnvalid char at [%d:%d]\n", x, y);
 	free_map(map);
-	exit(FAILURE);
+	exit(EXIT_FAILURE);
 }
 
 void	token_error(t_map *map)
@@ -32,7 +32,7 @@ void	token_error(t_map *map)
 	ft_printf("Player = %d\n", map->player->amount);
 	ft_printf("Exit = %d\n", map->exit->amount);
 	free_map(map);
-	exit(FAILURE);
+	exit(EXIT_FAILURE);
 }
 
 void	line_error(t_map *map, char *str)
@@ -49,7 +49,7 @@ void	line_error(t_map *map, char *str)
 		free(map->coll);
 		free(map->exit);
 	}
-	exit(FAILURE);
+	exit(EXIT_FAILURE);
 }
 
 void	no_path_error(t_map *map, t_map *map_cpy)
@@ -57,5 +57,5 @@ void	no_path_error(t_map *map, t_map *map_cpy)
 	ft_printf("Error\nNo possible path found\n");
 	free_map(map);
 	free_map(map_cpy);
-	exit(FAILURE);
+	exit(EXIT_FAILURE);
 }

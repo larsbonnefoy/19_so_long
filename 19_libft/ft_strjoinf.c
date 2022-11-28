@@ -6,13 +6,13 @@
 /*   By: lbonnefo <lbonnefo@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 08:19:34 by lbonnefo          #+#    #+#             */
-/*   Updated: 2022/11/21 17:24:32 by lbonnefo         ###   ########.fr       */
+/*   Updated: 2022/11/28 09:13:54 by lbonnefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoinf(const char *s1,const char *s2)
+char	*ft_strjoinf(const char *s1, const char *s2)
 {
 	int		size;
 	int		a;
@@ -36,5 +36,3 @@ char	*ft_strjoinf(const char *s1,const char *s2)
 	str[a + b] = '\0';
 	return (str);
 }
-
-

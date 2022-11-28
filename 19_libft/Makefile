@@ -6,7 +6,7 @@
 #    By: lbonnefo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/04 13:54:46 by lbonnefo          #+#    #+#              #
-#    Updated: 2022/11/15 14:30:42 by lbonnefo         ###   ########.fr        #
+#    Updated: 2022/11/28 09:09:07 by lbonnefo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,10 +66,10 @@ OBJ_BONUS = $(SRCS_BONUS:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
 
 $(NAME): $(OBJ)
-		ar -rc $(NAME) $(OBJ)
+		@ar -rc $(NAME) $(OBJ)
 
 .c.o:
-		cc $(CFLAGS) -c $< -o $(<:.c=.o)
+		@cc $(CFLAGS) -c $< -o $(<:.c=.o)
 
 all: $(NAME)
 
